@@ -1,0 +1,141 @@
+# @Author: Hanqing Zhu
+# @Date:   2024-02-23 22:53:17
+# @Last Modified by:   Dennis Yin
+# @Last Modified time: 2024-06-16 15:33:35
+# device level
+device:
+  mzi_modulator: # SL-MZM
+    type: 'mzi'
+    energy_per_bit: 50 # fJ/bit # 150
+    static_power: 7.0e-5 # 0 mW
+    length: 250
+    width: 25
+    insertion_loss: 4.5
+    extinction_rate: 6 #dB
+  integrator:
+    static_power: 0.3 #mW
+    area: 560 #um^2
+    insertion_loss: 2.5 #dB
+  # mzi for comp
+  mzi:
+    type: 'mzi'
+    energy_per_bit: 450 # fJ/bit
+    static_power: 0 # 0 mW
+    length: 120
+    width: 100
+    insertion_loss: 0.99 #two directional coupler 0.04 + 2 * 0.33
+    response_time: 2.0e-3 # 2mus
+  mrr_modulator:
+    type: 'ring'
+    energy_per_bit: 42 # fJ/bit -> 42fJ/bit @ 40Gbit
+    static_power: 1.2 #mW
+    length: 9.66
+    width: 9.66
+    insertion_loss: 0.95 # db
+    insertion_loss_uc: 0.1 # db uncoupled ring loss
+  mrr_router:
+    static_power: 0.275 # mW -> can we assume pcm for this. since it is fixed to be a router
+    length: 4.8
+    width: 4.8
+    insertion_loss: 0.93
+  phase_shifter: # ITO
+    dynamic_power: 0
+    static_power: 0.15
+    insertion_loss: 0.03
+    length: 50
+    width: 6
+  direction_coupler:
+    insertion_loss: 0.33
+    length: 6.5
+    width: 31
+  photo_detector: # AIM PD, 10uW sensitivity
+    power: 2.5e-5
+    sensitivity: -27 #dbm
+    min_rx_power: -46.021 #dBm, e.g., 0.1 mW to have a good eye diagram 1.1 A/W
+    length: 16
+    width: 20
+  laser:
+    power: 23.5 #mW
+    length: 0
+    width: 0
+    wall_plug_eff: 0.2
+    coupling_loss: 0.7 # dB
+    wavelength: 1.55
+  y_branch: ## Customized 1x10 MMI
+    insertion_loss: 0.1
+    length: 22 # derived by 1x10 MMI
+    width: 10
+  mmi:
+    1x10:
+      insertion_loss: 0.199
+      length: 34.6 #increase based on 
+      width: 14.1
+  crossing:
+    insertion_loss: 0.23
+    length: 8
+    width: 8
+  waveguide:
+    insertion_loss: 0.11 # 0.11 dB/cm
+    length: 2 # cm
+  micro_comb:
+    length: 0
+    width: 0
+  phase_shifter_interval:
+    interv_s: 10
+    interv_h: 20
+    interv_v: 140
+  switch:
+    switch_interv_s: 10
+    switch_interv_h: 26
+
+core:
+  type: "crossbar"
+  width: 16
+  height: 16
+  num_wavelength: 1
+  work_freq: 5
+  laser_power_scale: 1
+  interface:
+    ADC:
+      choice: 2
+      sharing_factor: 1
+    DAC:
+      choice: 2
+    DAC_weight:
+      choice: 2
+    DAC_switch:
+      choice: 2
+    TIA:
+      power: 3
+      area: 50
+  precision:
+    in_bit: 6
+    w_bit: 8
+    act_bit: 8
+  sparsity:
+    rows: 2
+    column: 0
+
+arch:
+  num_tiles: 4
+  num_pe_per_tile: 4
+  r: 1
+  c: 1
+  oedac_partition: 2
+  tunable_splitter: True
+  structural_sparsity: False
+  full_range_support_factor: 1 # pe support full range or not -> 2: one operand is positive only -> 4 all operands are positive only
+  weight_reuse_factor: 16 # weight factor for weight static one
+  time_accum_factor: 8 # pe can do time accumulation
+  input_mod_sharing_flag: 1 # multiple tiles share one mod unit for one operand
+  adc_share_flag: 1 # multiple PEs share one adc array
+  datamovement:
+    DRAM: 62.4e-9 # 76.8GB/s -> 323.9mW at 500 MHz -> 323.9 / 76.8 * 2 = 8.43489
+    DRAM_GB: 62.4e-9
+    GB2: 1.655e-9 # 4.18477mJ / 2Byte 3.8 * 1.5732 * 4 / 32 + 0.11 * 1000 / 32
+    GB1: 0.92e-9 # 0.175e-9 mJ/ 2Byte 0.0032118 * 1000 / 8 + 0.0605 * 0.360976 * 4 / 8
+    NoC: 2.0e-9 # ?? temporally use eyerisis
+    RF: 0.073e-9 # 0.07 mJ/2Byte leakage power * access time + dynamic energy per acess * cache access rate
+  # TODO(hqzhu): add memory size here
+  memory_size:
+    M2_buffer_size: 4096

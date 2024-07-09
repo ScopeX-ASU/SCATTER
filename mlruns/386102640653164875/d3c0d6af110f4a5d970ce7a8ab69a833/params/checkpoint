@@ -1,0 +1,1 @@
+./checkpoint/cifar100/resnet18/train/TeMPO_ResNet18_lr-0.0020_wb-8_ib-6_cb-[4,4,16,16]_run-1.pt

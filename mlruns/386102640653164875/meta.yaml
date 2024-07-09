@@ -1,0 +1,6 @@
+artifact_location: file:///home/ziangyin/all_projects/SparseTeMPO/mlruns/386102640653164875
+creation_time: 1719094820715
+experiment_id: '386102640653164875'
+last_update_time: 1719094820715
+lifecycle_stage: active
+name: cifar100_resnet18_train

@@ -1,0 +1,6 @@
+artifact_location: file:///home/ziangyin/all_projects/SparseTeMPO/mlruns/201260500799785743
+creation_time: 1719094729972
+experiment_id: '201260500799785743'
+last_update_time: 1719094729972
+lifecycle_stage: active
+name: fmnist_cnn_train

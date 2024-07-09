@@ -1,0 +1,92 @@
+criterion:
+  name: ce
+
+aux_criterion: null
+
+optimizer:
+  name: adamw
+  lr: 0.002
+  weight_decay: 0.01
+  grad_clip_value: 1
+
+scheduler:
+  name: cosine
+  lr_gamma: 0.99
+  lr_min: 0
+
+run:
+  experiment: "default"
+  n_epochs: 100
+  batch_size: 32
+  use_cuda: 1
+  gpu_id: 0
+  deterministic: 1
+  random_state: 42
+  log_interval: 200
+  train_noise: 0
+  grad_clip: False
+  max_grad_value: 1
+  do_distill: False
+
+quantize:
+  weight_bit: 32
+  input_bit: 32
+
+noise:
+  phase_bias: 0
+  phase_noise_std: 0
+  output_noise_std: 0
+  gamma_noise_std: 0
+  crosstalk_factor: 0
+  random_state: 42
+  weight_noise_std: 0.0
+  crosstalk_flag: False
+  noise_flag: False
+  light_redist: False
+  input_power_gating: False
+  input_modulation_ER: 6
+  output_power_gating: False
+
+checkpoint:
+  save_best_model_k: 3
+  checkpoint_dir: "fmnist/cnn/train"
+  model_comment: ""
+  resume: 0
+  restore_checkpoint: ""
+  no_linear: 0
+
+model:
+  name: "TeMPO_CNN"
+  conv_cfg:
+    type: TeMPOBlockConv2d
+    mode: "weight"
+    miniblock: [1, 1, 16, 16]
+    w_bit: 8
+    in_bit: 6
+  # conv_cfg:
+  #   type: Conv2d
+  linear_cfg:
+    type: TeMPOBlockLinear
+    mode: "weight"
+    miniblock: [1, 1, 16, 16]
+    w_bit: 8
+    in_bit: 6
+  # linear_cfg:
+  #   type: Linear
+  norm_cfg:
+    type: BN2d
+    affine: True
+  act_cfg:
+    type: ReLU
+    inplace: True
+  kernel_list: [64, 64, 64]
+  kernel_size_list: [3, 3, 3]
+  hidden_list: []
+  stride_list: [1, 2, 1]
+  padding_list: [1, 1, 1]
+  pool_out_size: 5
+
+debug:
+  verbose: 1
+  verboise: 1
+

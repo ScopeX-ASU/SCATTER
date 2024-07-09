@@ -1,0 +1,15 @@
+artifact_uri: file:///home/ziangyin/all_projects/SparseTeMPO/mlruns/386102640653164875/d3c0d6af110f4a5d970ce7a8ab69a833/artifacts
+end_time: 1719095045011
+entry_point_name: ''
+experiment_id: '386102640653164875'
+lifecycle_stage: active
+run_id: d3c0d6af110f4a5d970ce7a8ab69a833
+run_name: TeMPO_ResNet18
+run_uuid: d3c0d6af110f4a5d970ce7a8ab69a833
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1719095029213
+status: 3
+tags: []
+user_id: ziangyin
