@@ -92,13 +92,11 @@ efficiency.
 
 # Citing SCATTER
 ```
-@misc{yin2024scatteralgorithmcircuitcosparsephotonic,
+@inproceedings{yin2024scatter,
       title={SCATTER: Algorithm-Circuit Co-Sparse Photonic Accelerator with Thermal-Tolerant, Power-Efficient In-situ Light Redistribution}, 
       author={Ziang Yin and Nicholas Gangi and Meng Zhang and Jeff Zhang and Rena Huang and Jiaqi Gu},
       year={2024},
-      eprint={2407.05510},
-      archivePrefix={arXiv},
-      primaryClass={cs.AR},
+      booktitle={International Conference on Computer-Aided Design (ICCAD)},
       url={https://arxiv.org/abs/2407.05510}, 
 }
 ```
