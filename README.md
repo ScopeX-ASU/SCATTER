@@ -1,7 +1,7 @@
 
 # SCATTER 
 
-By [Ziang Yin](https://scopex-asu.github.io/index.html), Nicholas Gangi, Meng Zhang, [Jeff Zhang](https://search.asu.edu/profile/4346755), [Rena Huang](https://faculty.rpi.edu/rena-huang) and [Jiaqi Gu](https://scopex-asu.github.io/index.html).
+By [Ziang Yin](https://scopex-asu.github.io/index.html), Nicholas Gangi, Meng Zhang, [Jeff Zhang](https://search.asu.edu/profile/4346755), [Rena Huang](https://faculty.rpi.edu/rena-huang) and [Jiaqi Gu<sup>†</sup>](https://scopex-asu.github.io/index.html).
 
 This repo is the official implementation of ["SCATTER: Algorithm-Circuit Co-Sparse Photonic Accelerator with Thermal-Tolerant, Power-Efficient In-situ Light Redistribution"](https://arxiv.org/abs/2407.05510)
 
